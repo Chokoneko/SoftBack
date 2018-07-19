@@ -1,0 +1,184 @@
+{
+  "categories": [
+    {
+      "id": 0,
+      "name": "proident",
+      "items": [
+        {
+          "id": 0,
+          "name": "excepteur",
+          "checked": false
+        },
+        {
+          "id": 1,
+          "name": "irure",
+          "checked": true
+        },
+        {
+          "id": 2,
+          "name": "consectetur",
+          "checked": true
+        },
+        {
+          "id": 3,
+          "name": "proident",
+          "checked": false
+        },
+        {
+          "id": 4,
+          "name": "esse",
+          "checked": false
+        },
+        {
+          "id": 5,
+          "name": "consectetur",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "in",
+      "items": [
+        {
+          "id": 0,
+          "name": "ad",
+          "checked": false
+        },
+        {
+          "id": 1,
+          "name": "ut",
+          "checked": true
+        },
+        {
+          "id": 2,
+          "name": "non",
+          "checked": false
+        },
+        {
+          "id": 3,
+          "name": "sit",
+          "checked": false
+        },
+        {
+          "id": 4,
+          "name": "consequat",
+          "checked": true
+        },
+        {
+          "id": 5,
+          "name": "ullamco",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "nulla",
+      "items": [
+        {
+          "id": 0,
+          "name": "proident",
+          "checked": true
+        },
+        {
+          "id": 1,
+          "name": "anim",
+          "checked": false
+        },
+        {
+          "id": 2,
+          "name": "nulla",
+          "checked": false
+        },
+        {
+          "id": 3,
+          "name": "mollit",
+          "checked": false
+        },
+        {
+          "id": 4,
+          "name": "duis",
+          "checked": false
+        },
+        {
+          "id": 5,
+          "name": "ullamco",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "culpa",
+      "items": [
+        {
+          "id": 0,
+          "name": "occaecat",
+          "checked": false
+        },
+        {
+          "id": 1,
+          "name": "dolor",
+          "checked": true
+        },
+        {
+          "id": 2,
+          "name": "nisi",
+          "checked": false
+        },
+        {
+          "id": 3,
+          "name": "veniam",
+          "checked": true
+        },
+        {
+          "id": 4,
+          "name": "quis",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "mollit",
+      "items": [
+        {
+          "id": 0,
+          "name": "eu",
+          "checked": true
+        },
+        {
+          "id": 1,
+          "name": "dolor",
+          "checked": true
+        },
+        {
+          "id": 2,
+          "name": "proident",
+          "checked": false
+        },
+        {
+          "id": 3,
+          "name": "deserunt",
+          "checked": false
+        },
+        {
+          "id": 4,
+          "name": "nulla",
+          "checked": true
+        },
+        {
+          "id": 5,
+          "name": "aliquip",
+          "checked": false
+        },
+        {
+          "id": 6,
+          "name": "esse",
+          "checked": true
+        }
+      ]
+    }
+  ]
+}
