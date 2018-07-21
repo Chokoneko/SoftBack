@@ -16,21 +16,46 @@ router.get('/categories', function(req, res, next) {
 
 //TODO Handon : déclaré les vraiable ou utiliser req.param....
 router.get('/categories/:categorie_id', function(req, res, next) {
-  const categorie_id = req.params.categorie_id;
+  const categorieId = req.params.categorie_id;
   res.send(
-    myObject.categories[id=categorie_id]
-      ? myObject.categories[id=categorie_id]
-      : `Can't find a categorie with id ${categorie_id}`
+    myObject.categories[id=categorieId]
+      ? myObject.categories[id=categorieId]
+      : `Can't find a categorie with id ${categorieId}`
   );
 });
 
 router.get('/categories/:categorie_id/items', function(req, res, next) {
-  const categorie_id = req.params.categorie_id;
+  const categorieId = req.params.categorie_id;
   res.send(
-    myObject.categories[id=categorie_id].items
-      ? myObject.categories[id=categorie_id].items
-      : `Can't find a categorie with id ${categorie_id}`
+    myObject.categories[id=categorieId].items
+      ? myObject.categories[id=categorieId].items
+      : `Can't find a categorie with id ${categorieId}`
     );
 });
 
+router.get('/categories/:categorie_id/items/:item_id', function(req, res, next) {
+  const categorieId = req.params.categorie_id;
+  const itemId = req.params.item_id;
+  if ( myObject.categories[id=categorieId]){
+    res.send(
+      myObject.categories[id=categorieId].items[itemId]
+        ? myObject.categories[id=categorieId].items[itemId]
+        : `Can't find an item with id ${itemId}`
+      );
+  } else {
+    res.status(500);
+    res.send(`'Can't find a category with id ${categorie_id}'`);
+  }  
+});
+
+router.put('/categories/:categorieId/items/:name', function(req, res, next) {
+  const categorieId = req.params.categorieId;
+  const itemName = req.params.name;
+  myObject.categories[categorieId].items.add({id:getItemID(categorieId),name:itemName});
+  res.send("Item "+ itemName +" ajouté !");
+});
+
+const getItemID = (categorieId) => {
+  return Maths.max(...myObject.categories[categorieId].items.map(id));
+}
 module.exports = router;
