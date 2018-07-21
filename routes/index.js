@@ -10,52 +10,88 @@ const myObject = require("../data/generated.json");
 console.log("Data loaded");
 console.log(myObject);
 
+sendError = (res,erroMessage) => {
+  res.status(500);
+  res.send(erroMessage);
+}
+
 router.get('/categories', function(req, res, next) {
-  res.send(myObject.categories);
-});
-
-//TODO Handon : déclaré les vraiable ou utiliser req.param....
-router.get('/categories/:categorie_id', function(req, res, next) {
-  const categorieId = req.params.categorie_id;
-  res.send(
-    myObject.categories[id=categorieId]
-      ? myObject.categories[id=categorieId]
-      : `Can't find a categorie with id ${categorieId}`
-  );
-});
-
-router.get('/categories/:categorie_id/items', function(req, res, next) {
-  const categorieId = req.params.categorie_id;
-  res.send(
-    myObject.categories[id=categorieId].items
-      ? myObject.categories[id=categorieId].items
-      : `Can't find a categorie with id ${categorieId}`
-    );
-});
-
-router.get('/categories/:categorie_id/items/:item_id', function(req, res, next) {
-  const categorieId = req.params.categorie_id;
-  const itemId = req.params.item_id;
-  if ( myObject.categories[id=categorieId]){
-    res.send(
-      myObject.categories[id=categorieId].items[itemId]
-        ? myObject.categories[id=categorieId].items[itemId]
-        : `Can't find an item with id ${itemId}`
-      );
+  if (myObject.categories){
+    res.send(myObject.categories);
   } else {
-    res.status(500);
-    res.send(`'Can't find a category with id ${categorie_id}'`);
+    sendError( res, `Can't find any categories`);
   }  
 });
 
-router.put('/categories/:categorieId/items/:name', function(req, res, next) {
-  const categorieId = req.params.categorieId;
-  const itemName = req.params.name;
-  myObject.categories[categorieId].items.add({id:getItemID(categorieId),name:itemName});
-  res.send("Item "+ itemName +" ajouté !");
+router.get('/categories/:categorie_id', function(req, res, next) {  
+  if (myObject.categories){
+    const categoryId = req.params.categorie_id;
+    const category = myObject.categories.find((c)=>c.id==categoryId);
+    if (category){
+        res.send(category);
+    } else {
+        sendError( res,  `Can't find a categorie with id ${categoryId}`);   
+
+    }
+  } else {
+    sendError( res, `Can't find any categories`);
+  }
 });
 
-const getItemID = (categorieId) => {
-  return Maths.max(...myObject.categories[categorieId].items.map(id));
-}
+router.get('/categories/:categorie_id/items', function(req, res, next) {
+    if (myObject.categories){
+        const categoryId = req.params.categorie_id;
+        const category = myObject.categories.find((c)=>c.id==categoryId);
+        if (category){
+            const items = category.items;
+            if(items){
+                res.send(items);
+            }else {
+                sendError( res, `Can't find any items in this category`);
+            }
+        } else {
+            sendError( res,  `Can't find a categorie with id ${categoryId}`);   
+    
+        }
+      } else {
+        sendError( res, `Can't find any categories`);
+      }
+});
+
+router.get('/categories/:categorie_id/items/:item_id', function(req, res, next) {
+    if (myObject.categories){
+        const categoryId = req.params.categorie_id;
+        const category = myObject.categories.find((c)=>c.id==categoryId);
+        if (category){
+            const items = category.items;
+            if(items){
+                const itemId = req.params.item_id;
+                const item = category.items.find((c)=>c.id==itemId);
+                if(item){
+                    res.send(item);
+                }else {
+                    sendError( res,  `Can't find an item with id ${itemId}`)
+                }
+            }else {
+                sendError( res, `Can't find any items in this category`);
+            }
+        } else {
+            sendError( res,  `Can't find a categorie with id ${categoryId}`);   
+    
+        }
+      } else {
+        sendError( res, `Can't find any categories`);
+      }
+});
+
+// router.put('/categories/:categoryId/items/:name', function(req, res, next) {
+//   const categoryId = req.params.categoryId;
+//   const itemName = req.params.name;
+//   myObject.categories[categoryId].items.add({id:getItemID(categoryId),name:itemName});
+//   res.send("Item "+ itemName +" ajouté !");
+// });
+
+// const getItemID = (categoryId) => {
+//   return Maths.max(...myObject.categories[categoryId].items.map(id));
+// }
 module.exports = router;
