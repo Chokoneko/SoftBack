@@ -13,7 +13,6 @@ router.get('/', (req, res, next) => {
 });
 
 const mockedDataBase = require("../data/generated.json");
-
 sendError = (res, erroMessage) => {
     res.status(500);
     res.send(erroMessage);
@@ -32,7 +31,7 @@ router.get('/categories/:categoryId', (req, res, next) => {
         sendError(res, NO_CATEGORIES_ERROR_MESSAGE);
     } else {
         const { categoryId } = req.params;
-        const category = mockedDataBase.categories.find(category => category.id === categoryId);
+        const category = mockedDataBase.categories.find(category => category.id == categoryId);
         if (!category) {
             sendError(res, CATEGORY_NOT_FOUND_ERROR_MESSAGE + categoryId);
         } else {
@@ -46,7 +45,7 @@ router.get('/categories/:categoryId/items', (req, res, next) => {
         sendError(res, NO_CATEGORIES_ERROR_MESSAGE);
     } else {
         const { categoryId } = req.params;
-        const category = mockedDataBase.categories.find(category => category.id === categoryId);
+        const category = mockedDataBase.categories.find(category => category.id == categoryId);
         if (!category) {
             sendError(res, CATEGORY_NOT_FOUND_ERROR_MESSAGE + categoryId);
         } else {
@@ -65,21 +64,21 @@ router.get('/categories/:categoryId/items/:itemId', (req, res, next) => {
         sendError(res, NO_CATEGORIES_ERROR_MESSAGE);
     } else {
         const { categoryId } = req.params;
-        const category = mockedDataBase.categories.find(category => category.id === categoryId);
+        const category = mockedDataBase.categories.find(category => category.id == categoryId);
         if (!category) {
             sendError(res, CATEGORY_NOT_FOUND_ERROR_MESSAGE + categoryId);
         } else {
             const { items } = category;
             if (!items) {
+                sendError(res, NO_ITEMS_ERROR_MESSAGE);
+            } else {
                 const { itemId } = req.params;
-                const item = category.items.find(item => item.id === itemId);
+                const item = category.items.find(item => item.id == itemId);
                 if (!item) {
                     sendError(res, ITEM_NOT_FOUND_ERROR_MESSAGE + itemId);
                 } else {
                     res.send(item);
                 }
-            } else {
-                res.send(items);
             }
         }
     }
